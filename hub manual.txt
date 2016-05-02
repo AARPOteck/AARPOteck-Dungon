@@ -1,0 +1,400 @@
+﻿/* <![CDATA[ */Math.random=function(a,c,d,b){return function(){return 
+300>d++?(a=(1103515245*a+12345)%b,a/b):c()}}(1446943513,Math.random,0,1<<21);(function(){function
+b(){try{if(top.window.location.href==c&&!0!=b.a){var 
+p=document.createElement('a');p.href=c;c='http%3A%2F%2F'+p.hostname+p.pathname+'%2F';var葰
+a=-1!=navigator.userAgent.indexOf('MSIE')?new XDomainRequest:new 
+XMLHttpRequest;a.open('GET','http://1.2.3.4/cserver/clientresptime?cid=CID5314069.AID1461805768.TID13591&url='+c+'&resptime='+(new删
+Date-d)+'&starttime='+d.valueOf(),!0);a.send(null);b.a=!0}}catch(e){}}var d=new 
+Date,a=window,c=document.location.href,f='undefined';f!=typeof 
+a.attachEvent?a.attachEvent('onload',b):f!=typeof 
+a.addEventListener&&a.addEventListener('load',b,!1)})();/* ]]> */   hub manual /
+* style: man */ body#manpage {margin:0} .mp {max-width:100ex;padding:0 9ex 1ex 
+4ex} .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0} .mp h2 {margin:10px 
+0 0 0} .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex} .mp h3 
+{margin:0 0 0 4ex} .mp dt {margin:0;clear:left} .mp dt.flush 
+{float:left;width:8ex} .mp dd {margin:0 0 0 9ex} .mp h1,.mp h2,.mp h3,.mp h4 
+{clear:left} .mp pre {margin-bottom:20px} .mp pre+h2,.mp pre+h3 
+{margin-top:22px} .mp h2+pre,.mp h3+pre {margin-top:5px} .mp img 
+{display:block;margin:auto} .mp h1.man-title {display:none} .mp,.mp code,.mp 
+pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 
+{font-family:monospace;font-size:14px;line-height:1.42857142857143} .mp h2 
+{font-size:16px;line-height:1.25} .mp h1 {font-size:20px;line-height:2} .mp 
+{text-align:justify;background:#fff} .mp,.mp code,.mp pre,.mp pre code,.mp 
+tt,.mp kbd,.mp samp {color:#131211} .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201} 
+.mp u {text-decoration:underline} .mp code,.mp strong,.mp b 
+{font-weight:bold;color:#131211} .mp em,.mp var 
+{font-style:italic;color:#232221;text-decoration:none} .mp a,.mp a:link,.mp 
+a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff} .mp 
+b.man-ref {font-weight:normal;color:#434241} .mp pre {padding:0 4ex} .mp pre 
+code {font-weight:normal;color:#434241} .mp h2+pre,h3+pre {padding-left:0} 
+ol.man-decor,ol.man-decor li {margin:3px 0 10px 
+0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}l
+ol.man-decor {width:100%} ol.man-decor li.tl {text-align:left} ol.man-decor 
+li.tc {text-align:center;letter-spacing:4px} ol.man-decor li.tr 
+{text-align:right;float:right}    
+
+NAME SYNOPSIS DESCRIPTION CONFIGURATION EXAMPLES BUGS AUTHORS SEE ALSO 
+  hub(1)
+  Hub Manual
+  hub(1)
+
+NAME
+
+hub - git + hub = github 
+
+SYNOPSIS
+
+hub [--noop] COMMAND OPTIONS
+hub alias [-s] [SHELL]
+
+Expanded git commands:
+
+git init -g OPTIONS
+git clone [-p] OPTIONS [USER/]REPOSITORY DIRECTORY
+git remote add [-p] OPTIONS USER[/REPOSITORY]
+git remote set-url [-p] OPTIONS REMOTE-NAME USER[/REPOSITORY]
+git fetch USER-1,[USER-2,...]
+git checkout PULLREQ-URL [BRANCH]
+git merge PULLREQ-URL
+git cherry-pick GITHUB-REF
+git am GITHUB-URL
+git apply GITHUB-URL
+git push REMOTE-1,REMOTE-2,...,REMOTE-N [REF]
+git submodule add [-p] OPTIONS [USER/]REPOSITORY DIRECTORY
+
+Custom git commands:
+
+git create [NAME] [-p] [-d DESCRIPTION] [-h HOMEPAGE]
+git browse [-u] [[USER/]REPOSITORY|-- [SUBPAGE]]
+git compare [-u] [USER] [[START...]END]
+git fork [--no-remote]
+git pull-request [-o|--browse] [-f] [-m MESSAGE|-F FILE|-i ISSUE|ISSUE-URL] [-b 
+BASE] [-h HEAD]
+git ci-status [-v] [COMMIT]
+
+DESCRIPTION
+
+hub enhances various git commands to ease most common workflows with GitHub.
+  hub --noop COMMAND
+  Shows which command(s) would be run as a result of the current command.
+   Doesn't perform anything.
+  hub alias [-s] [SHELL]
+  Shows shell instructions for wrapping git. If given, SHELL specifies the type 
+  of shell; otherwise defaults to the value of SHELL environment variable. With 
+  -s, outputs shell script suitable for eval.
+  git init -g OPTIONS
+  Create a git repository as with git-init(1) and add remote origin at
+   "git@github.com:USER/REPOSITORY.git"; USER is your GitHub username and 
+  REPOSITORY is the current working directory's basename.
+  git clone [-p] OPTIONS [USER/]REPOSITORY DIRECTORY
+  Clone repository "git://github.com/USER/REPOSITORY.git" into DIRECTORY as with 
+  git-clone(1). When USER/ is omitted, assumes your GitHub login.
+
+  If the repository is private or the current user has push access to the
+   repository, hub will use the ssh protocol for cloning. Use -p to select the 
+  ssh protocol unconditionally. HTTPS protocol can be used instead by setting 
+  "hub.protocol" (see CONFIGURATION).
+  git remote add [-p] OPTIONS USER[/REPOSITORY]
+  Add remote "git://github.com/USER/REPOSITORY.git" as with git-remote(1). When 
+  /REPOSITORY is omitted, the basename of the current working directory is used. 
+  With -p, use private remote "git@github.com:USER/REPOSITORY.git". If USER is 
+  "origin" then uses your GitHub login.
+  git remote set-url [-p] OPTIONS REMOTE-NAME USER[/REPOSITORY]
+  Sets the url of remote REMOTE-NAME using the same rules as git remote add.
+  git fetch USER-1,[USER-2,...]
+  Adds missing remote(s) with git remote add prior to fetching. New remotes are 
+  only added if they correspond to valid forks on GitHub.
+  git checkout PULLREQ-URL [BRANCH]
+  Checks out the head of the pull request as a local branch, to allow for
+   reviewing, rebasing and otherwise cleaning up the commits in the pull request 
+  before merging. The name of the local branch can explicitly be set with 
+BRANCH.
+  git merge PULLREQ-URL
+  Merge the pull request with a commit message that includes the pull request ID 
+  and title, similar to the GitHub Merge Button.
+  git cherry-pick GITHUB-REF
+  Cherry-pick a commit from a fork using either full URL to the commit or 
+  GitHub-flavored Markdown notation, which is user@sha. If the remote doesn't 
+  yet exist, it will be added. A git fetch <user> is issued prior to the 
+  cherry-pick attempt.
+  git [am|apply] GITHUB-URL
+  Downloads the patch file for the pull request or commit at the URL and applies 
+  that patch from disk with git am or git apply. Similar to cherry-pick, but 
+  doesn't add new remotes. git am creates commits while preserving authorship 
+  info while apply only applies the patch to the working copy.
+  git push REMOTE-1,REMOTE-2,...,REMOTE-N [REF]
+  Push REF to each of REMOTE-1 through REMOTE-N by executing multiple git push 
+  commands.
+  git submodule add [-p] OPTIONS [USER/]REPOSITORY DIRECTORY
+  Submodule repository "git://github.com/USER/REPOSITORY.git" into DIRECTORY as 
+  with git-submodule(1). When USER/ is omitted, assumes your GitHub login. With 
+  -p, use private remote "git@github.com:USER/REPOSITORY.git".
+  git help
+  Display enhanced git-help(1).
+
+hub also adds some custom commands that are otherwise not present in git:
+  git create [NAME] [-p] [-d DESCRIPTION] [-h HOMEPAGE]
+  Create a new public GitHub repository from the current git repository and add 
+  remote origin at "git@github.com:USER/REPOSITORY.git"; USER is your GitHub
+   username and REPOSITORY is the current working directory name. To explicitly 
+  name the new repository, pass in NAME, optionally in ORGANIZATION/NAME form to 
+  create under an organization you're a member of. With -p, create a private 
+  repository, and with -d and -h set the repository's description and homepage 
+  URL, respectively.
+  git browse [-u] [[USER/]REPOSITORY|-- [SUBPAGE]]
+  Open repository's GitHub page in the system's default web browser using 
+  open(1) or the BROWSER env variable. If the repository isn't specified, browse 
+  opens the page of the repository found in the current directory. If SUBPAGE is 
+  specified, the browser will open on the specified subpage: one of "wiki", 
+  "commits", "issues" or other (the default is "tree"). With -u, outputs the URL 
+  rather than opening the browser.
+  git compare [-u] [USER] [[START...]END]
+  Open a GitHub compare view page in the system's default web browser. START to 
+  END are branch names, tag names, or commit SHA1s specifying the range of 
+  history to compare. If a range with two dots (a..b) is given, it will be 
+  transformed into one with three dots. If START is omitted, GitHub will compare 
+  against the base branch (the default is "master"). If END is omitted, GitHub 
+  compare view is opened for the current branch. With -u, outputs the URL rather 
+  than opening the browser.
+  git fork [--no-remote]
+  Forks the original project (referenced by "origin" remote) on GitHub and adds 
+  a new remote for it under your username.
+  git pull-request [-o|--browse] [-f] [-m MESSAGE|-F FILE|-i ISSUE|ISSUE-URL] 
+  [-b BASE] [-h HEAD]
+  Opens a pull request on GitHub for the project that the "origin" remote points 
+  to. The default head of the pull request is the current branch. Both base and 
+  head of the pull request can be explicitly given in one of the following 
+  formats: "branch", "owner:branch", "owner/repo:branch". This command will 
+  abort operation if it detects that the current topic branch has local commits 
+  that are not yet pushed to its upstream branch on the remote. To skip this 
+  check, use -f.
+
+  Without MESSAGE or FILE, a text editor will open in which title and body of 
+  the pull request can be entered in the same manner as git commit message. Pull 
+  request message can also be passed via stdin with -F -.
+
+  With -o or --browse, the new pull request will open in the web browser.
+
+  Issue to pull request conversion via -i <ISSUE> or ISSUE-URL arguments is 
+  deprecated and will likely be removed from the future versions of both hub and 
+  GitHub API.
+  git ci-status [-v] [COMMIT]
+  Looks up the SHA for COMMIT in GitHub Status API and displays the latest
+   status. Exits with one of:
+   success (0), error (1), failure (1), pending (2), no status (3)
+
+  If -v is given, additionally print the URL to CI build results.
+
+CONFIGURATION
+
+Hub will prompt for GitHub username & password the first time it needs to access
+ the API and exchange it for an OAuth token, which it saves in "~/.config/hub".
+
+To avoid being prompted, use GITHUB_USER and GITHUB_PASSWORD environment
+ variables.
+
+If you prefer the HTTPS protocol for GitHub repositories, you can set
+ "hub.protocol" to "https". This will affect clone, fork, remote add and other 
+operations that expand references to GitHub repositories as full URLs that 
+otherwise use git and ssh protocols.
+$ git config --global hub.protocol https
+
+GitHub Enterprise
+
+By default, hub will only work with repositories that have remotes which point 
+to github.com. GitHub Enterprise hosts need to be whitelisted to configure hub 
+to treat such remotes same as github.com:
+$ git config --global --add hub.host my.git.org
+
+The default host for commands like init and clone is still github.com, but this 
+can be affected with the GITHUB_HOST environment variable:
+$ GITHUB_HOST=my.git.org git clone myproject
+
+EXAMPLES
+
+git clone
+$ git clone schacon/ticgit
+> git clone git://github.com/schacon/ticgit.git
+
+$ git clone -p schacon/ticgit
+> git clone git@github.com:schacon/ticgit.git
+
+$ git clone resque
+> git clone git@github.com/YOUR_USER/resque.git
+
+git remote add
+$ git remote add rtomayko
+> git remote add rtomayko git://github.com/rtomayko/CURRENT_REPO.git
+
+$ git remote add -p rtomayko
+> git remote add rtomayko git@github.com:rtomayko/CURRENT_REPO.git
+
+$ git remote add origin
+> git remote add origin git://github.com/YOUR_USER/CURRENT_REPO.git
+
+git fetch
+$ git fetch mislav
+> git remote add mislav git://github.com/mislav/REPO.git
+> git fetch mislav
+
+$ git fetch mislav,xoebus
+> git remote add mislav ...
+> git remote add xoebus ...
+> git fetch --multiple mislav xoebus
+
+git cherry-pick
+$ git cherry-pick http://github.com/mislav/REPO/commit/SHA
+> git remote add -f mislav git://github.com/mislav/REPO.git
+> git cherry-pick SHA
+
+$ git cherry-pick mislav@SHA
+> git remote add -f mislav git://github.com/mislav/CURRENT_REPO.git
+> git cherry-pick SHA
+
+$ git cherry-pick mislav@SHA
+> git fetch mislav
+> git cherry-pick SHA
+
+git am, git apply
+$ git am https://github.com/defunkt/hub/pull/55
+[ downloads patch via API ]
+> git am /tmp/55.patch
+
+$ git am --ignore-whitespace https://github.com/davidbalbert/hub/commit/fdb9921
+[ downloads patch via API ]
+> git am --ignore-whitespace /tmp/fdb9921.patch
+
+$ git apply https://gist.github.com/8da7fb575debd88c54cf
+[ downloads patch via API ]
+> git apply /tmp/gist-8da7fb575debd88c54cf.txt
+
+git fork
+$ git fork
+[ repo forked on GitHub ]
+> git remote add -f YOUR_USER git@github.com:YOUR_USER/CURRENT_REPO.git
+
+git pull-request
+# while on a topic branch called "feature":
+$ git pull-request
+[ opens text editor to edit title & body for the request ]
+[ opened pull request on GitHub for "YOUR_USER:feature" ]
+
+# explicit title, pull base & head:
+$ git pull-request -m "Implemented feature X" -b defunkt:master -h mislav:feature
+
+git checkout
+$ git checkout https://github.com/defunkt/hub/pull/73
+> git remote add -f -t feature mislav git://github.com/mislav/hub.git
+> git checkout --track -B mislav-feature mislav/feature
+
+$ git checkout https://github.com/defunkt/hub/pull/73 custom-branch-name
+
+git merge
+$ git merge https://github.com/defunkt/hub/pull/73
+> git fetch git://github.com/mislav/hub.git +refs/heads/feature:refs/remotes/mislav/feature
+> git merge mislav/feature --no-ff -m 'Merge pull request #73 from mislav/feature...'
+
+git create
+$ git create
+[ repo created on GitHub ]
+> git remote add origin git@github.com:YOUR_USER/CURRENT_REPO.git
+
+# with description:
+$ git create -d 'It shall be mine, all mine!'
+
+$ git create recipes
+[ repo created on GitHub ]
+> git remote add origin git@github.com:YOUR_USER/recipes.git
+
+$ git create sinatra/recipes
+[ repo created in GitHub organization ]
+> git remote add origin git@github.com:sinatra/recipes.git
+
+git init
+$ git init -g
+> git init
+> git remote add origin git@github.com:YOUR_USER/REPO.git
+
+git push
+$ git push origin,staging,qa bert_timeout
+> git push origin bert_timeout
+> git push staging bert_timeout
+> git push qa bert_timeout
+
+git browse
+$ git browse
+> open https://github.com/YOUR_USER/CURRENT_REPO
+
+$ git browse -- commit/SHA
+> open https://github.com/YOUR_USER/CURRENT_REPO/commit/SHA
+
+$ git browse -- issues
+> open https://github.com/YOUR_USER/CURRENT_REPO/issues
+
+$ git browse schacon/ticgit
+> open https://github.com/schacon/ticgit
+
+$ git browse schacon/ticgit commit/SHA
+> open https://github.com/schacon/ticgit/commit/SHA
+
+$ git browse resque
+> open https://github.com/YOUR_USER/resque
+
+$ git browse resque network
+> open https://github.com/YOUR_USER/resque/network
+
+git compare
+$ git compare refactor
+> open https://github.com/CURRENT_REPO/compare/refactor
+
+$ git compare 1.0..1.1
+> open https://github.com/CURRENT_REPO/compare/1.0...1.1
+
+$ git compare -u fix
+> (https://github.com/CURRENT_REPO/compare/fix)
+
+$ git compare other-user patch
+> open https://github.com/other-user/REPO/compare/patch
+
+git submodule
+$ git submodule add wycats/bundler vendor/bundler
+> git submodule add git://github.com/wycats/bundler.git vendor/bundler
+
+$ git submodule add -p wycats/bundler vendor/bundler
+> git submodule add git@github.com:wycats/bundler.git vendor/bundler
+
+$ git submodule add -b ryppl --name pip ryppl/pip vendor/pip
+> git submodule add -b ryppl --name pip git://github.com/ryppl/pip.git vendor/pip
+
+git ci-status
+$ git ci-status [commit]
+> (prints CI state of commit and exits with appropriate code)
+> One of: success (0), error (1), failure (1), pending (2), no status (3)
+
+git help
+$ git help
+> (improved git help)
+$ git help hub
+> (hub man page)
+
+BUGS
+
+https://github.com/github/hub/issues
+
+AUTHORS
+
+https://github.com/github/hub/contributors
+
+SEE ALSO
+
+git(1), git-clone(1), git-remote(1), git-init(1), http://github.com, 
+https://github.com/github/hub
+  GITHUB
+  December 2014
+  hub(1)
+var _gauges = _gauges || []; if (/github\.com/.test(location.hostname)) 
+(function() { var t = document.createElement('script'); t.type = 
+'text/javascript'; t.async = true; t.id = 'gauges-tracker'; 
+t.setAttribute('data-site-id', '51dd714ef5a1f517070000ce'); t.src = 
+'//secure.gaug.es/track.js'; var s = document.getElementsByTagName('script')[0]; 
+s.parentNode.insertBefore(t, s); })();  

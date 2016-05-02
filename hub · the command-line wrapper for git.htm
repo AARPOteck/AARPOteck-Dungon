@@ -1,0 +1,252 @@
+﻿<!DOCTYPE HTML>
+<!-- saved from url=(0022)http://hub.github.com/ -->
+<!DOCTYPE html PUBLIC "" ""><HTML><HEAD><META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+ <TITLE>hub · the command-line wrapper for git</TITLE> 
+<META charset="utf-8"> 
+<META name="viewport" content="initial-scale=1.0"> 
+<STYLE>
+  body {
+    font: 100% Helvetica, Arial, sans-serif;
+    background: #ccc;
+    width: 750px;
+    margin: 2em auto;
+  }
+  a:link, a:visited, a:active {
+    color: rgb(65, 131, 196);
+    -webkit-transition: color .2s ease-out;
+  }
+  a:hover { color: rgb(35, 101, 166); }
+  h1 {
+    font: 400 1.3em "Futura", "Lucida Grande", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: rgba(0,0,0,.7) 1px 1px 2px;
+    margin: .2em 0;
+    line-height: 1.2;
+    float: left;
+    width: 75%;
+  }
+  h1 a {
+    text-decoration: none;
+    font-size: 4.5em;
+    letter-spacing: -.1em;
+    margin-right: .1em;
+    position: relative;
+    top: .1em;
+    text-transform: none;
+    -webkit-text-stroke: white 1px;
+    text-shadow:
+      #eee -1px -1px 0,
+      #eee -2px -2px 0,
+      #eee -3px -3px 0,
+      #eee -4px -4px 0,
+      rgba(65, 131, 196, .3) -5px -5px 0;
+  }
+  h1 a:hover { text-decoration: none; }
+  .man {
+    text-align: right;
+    float: right;
+    width: 25%;
+    padding-top: 5em;
+    color: gray;
+    text-transform: lowercase;
+    font-size: .9em;
+  }
+  h2, .man, .footer { text-shadow: rgba(255,255,255,.8) 0 1px 0; }
+  h2 { margin: 1em 0 0em 0; color: #444; }
+  p code, .man a, pre { font: 15px Monaco, Courier, monospace; }
+  section {
+    clear: both;
+    background: white;
+    color: #444;
+    padding: 1em;
+    margin: 12px 0 0 0;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-box-shadow: rgba(0,0,0,.4) 1px 1px 4px;
+    -moz-box-shadow: rgba(0,0,0,.4) 1px 1px 4px;
+    line-height: 1.5;
+  }
+  section > *:first-child { margin-top: 0 }
+  section p { font-size: 1.1em; }
+  section p em {
+    font-style: normal; background: #FCF4C1; padding: 1px 4px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+  }
+  pre {
+    margin: .5em 0 0 0;
+    border-top: 1px dotted silver;
+    padding-top: 1em;
+    line-height: 1.5;
+  }
+  pre .comment {
+    color: #999;
+    font: italic 1.2em "Hoefler Text", "Times New Roman", "Georgia", serif;
+  }
+  pre .comment .hidden { color: white }
+  pre .result { color: #777; font-style: italic; margin-left: 1em }
+  pre strong { color: #894400; font-weight: normal }
+  .footer { text-align: center; margin-top: 15px; color: gray; }
+
+  @media only screen and (max-width: 768px) {
+    body { width: auto; margin: 0; padding: 16px; padding-top: 0 }
+    section { margin-top: 16px }
+  }
+  @media only screen and (max-width: 480px) {
+    body { padding: 6px; font-size: 14px }
+    h1 { margin-top: 0 }
+    h1, .man { width: auto; text-align: center; float: none }
+    .man { padding-top: 0; padding-right: 10px }
+    h1 a { display: block; margin: 0 auto }
+    section {
+      margin-top: 6px; padding: .5em 8px;
+      line-height: 1.3; overflow: hidden;
+    }
+    section h2 { font-size: 16px; margin-bottom: 0 }
+    section p { font-size: 1em; line-height: 1.5 }
+    section p em { padding: 0; -webkit-border-radius: 0 }
+    pre { font-size: 13px; line-height: 1.2; white-space: pre-wrap }
+    pre .comment { font-size: 1em }
+    pre .result { font-size: .9em; margin-left: 0 }
+  }
+</STYLE>
+ 
+<META name="GENERATOR" content="MSHTML 11.00.9600.16428"></HEAD>
+<BODY> 
+<H1><A href="https://github.com/github/hub#readme">hub</A> makes git better with 
+GitHub</H1>
+<P class="man">Documentation: <A href="http://hub.github.com/hub.1.html">man 
+hub</A></P><SECTION id="install">
+<P><STRONG>hub</STRONG> is a command-line wrapper for git that makes you 
+<EM>better at GitHub</EM>. </P>
+<PRE><SPAN class="comment"># OS X: install the latest release</SPAN>
+$ <A href="http://brew.sh/">brew</A> install hub
+
+<SPAN class="comment"># Other platforms: fetch a <A href="https://github.com/github/hub/releases">precompiled binary release</A>, or build your own from source.</SPAN>
+<SPAN class="comment"># You will need <A href="http://golang.org/doc/install">Go development environment</A>.</SPAN>
+$ git clone <STRONG>https://github.com/github/hub.git</STRONG> &amp;&amp; cd hub
+<SPAN class="comment"># assuming that `~/bin` is in your PATH:</SPAN>
+$ <STRONG>script/build -o ~/bin/hub</STRONG>
+
+<SPAN class="comment"># alias it as git</SPAN>
+$ alias <STRONG>git=hub</STRONG>
+
+$ git version
+git version 2.1.4
+hub version 2.2.0 <SPAN class="comment"><SPAN class="hidden">#</SPAN> ← it works!</SPAN>
+</PRE></SECTION><SECTION 
+id="contributor">
+<H2>As a contributor to open-source</H2>
+<P>Whether you are beginner or an experienced contributor to open-source, hub
+ makes it easier to <EM>fetch repositories</EM>, <EM>navigate project 
+pages</EM>, <EM>fork repos</EM> and even <EM>submit pull&nbsp;requests</EM>, all 
+from the command-line. </P>
+<PRE><SPAN class="comment"># clone your own project</SPAN>
+$ git <STRONG>clone dotfiles</STRONG>
+<SPAN class="result">→ git clone git://github.com/YOUR_USER/dotfiles.git</SPAN>
+
+<SPAN class="comment"># clone another project</SPAN>
+$ git <STRONG>clone github/hub</STRONG>
+<SPAN class="result">→ git clone git://github.com/github/hub.git</SPAN>
+
+<SPAN class="comment"># open the current project's issues page</SPAN>
+$ git <STRONG>browse -- issues</STRONG>
+<SPAN class="result">→ open https://github.com/github/hub/issues</SPAN>
+
+<SPAN class="comment"># open another project's wiki</SPAN>
+$ git <STRONG>browse mojombo/jekyll wiki</STRONG>
+<SPAN class="result">→ open https://github.com/mojombo/jekyll/wiki</SPAN>
+</PRE>
+<PRE><SPAN class="comment"># Example workflow for contributing to a project:</SPAN>
+$ git clone github/hub
+$ cd hub
+<SPAN class="comment"># create a topic branch</SPAN>
+$ git checkout -b feature
+  ( making changes ... )
+$ git commit -m "done with feature"
+
+<SPAN class="comment"># It's time to fork the repo!</SPAN>
+$ git <STRONG>fork</STRONG>
+<SPAN class="result">→ (forking repo on GitHub...)</SPAN>
+<SPAN class="result">→ git remote add YOUR_USER git://github.com/YOUR_USER/hub.git</SPAN>
+
+<SPAN class="comment"># push the changes to your new remote</SPAN>
+$ git push YOUR_USER feature
+<SPAN class="comment"># open a pull request for the topic branch you've just pushed</SPAN>
+$ git <STRONG>pull-request</STRONG>
+<SPAN class="result">→ (opens a text editor for your pull request message)</SPAN>
+</PRE></SECTION><SECTION 
+id="maintainer">
+<H2>As an open-source maintainer</H2>
+<P>Maintaining a project is easier when you can <EM>easily fetch from other 
+forks</EM>, <EM>review pull requests</EM> and <EM>cherry-pick URLs</EM>. You can 
+even <EM>create a new repo</EM> for your next thing. </P>
+<PRE><SPAN class="comment"># fetch from multiple trusted forks, even if they don't yet exist as remotes</SPAN>
+$ git <STRONG>fetch mislav,cehoffman</STRONG>
+<SPAN class="result">→ git remote add mislav git://github.com/mislav/hub.git</SPAN>
+<SPAN class="result">→ git remote add cehoffman git://github.com/cehoffman/hub.git</SPAN>
+<SPAN class="result">→ git fetch --multiple mislav cehoffman</SPAN>
+
+<SPAN class="comment"># check out a pull request for review</SPAN>
+$ git <STRONG>checkout https://github.com/github/hub/pull/134</STRONG>
+<SPAN class="result">→ (creates a new branch with the contents of the pull request)</SPAN>
+
+<SPAN class="comment"># directly apply all commits from a pull request to the current branch</SPAN>
+$ git <STRONG>am -3</STRONG> https://github.com/github/hub/pull/134
+
+<SPAN class="comment"># cherry-pick a GitHub URL</SPAN>
+$ git <STRONG>cherry-pick https://github.com/xoebus/hub/commit/177eeb8</STRONG>
+<SPAN class="result">→ git remote add xoebus git://github.com/xoebus/hub.git</SPAN>
+<SPAN class="result">→ git fetch xoebus</SPAN>
+<SPAN class="result">→ git cherry-pick 177eeb8</SPAN>
+
+<SPAN class="comment"># `am` can be better than cherry-pick since it doesn't create a remote</SPAN>
+$ git <STRONG>am</STRONG> https://github.com/xoebus/hub/commit/177eeb8
+
+<SPAN class="comment"># open the GitHub compare view between two releases</SPAN>
+$ git <STRONG>compare v0.9..v1.0</STRONG>
+
+<SPAN class="comment"># put compare URL for a topic branch to clipboard</SPAN>
+$ git <STRONG>compare -u feature | pbcopy</STRONG>
+
+<SPAN class="comment"># create a repo for a new project</SPAN>
+$ git init
+$ git add . &amp;&amp; git commit -m "It begins."
+$ git <STRONG>create -d "My new thing"</STRONG>
+<SPAN class="result">→ (creates a new project on GitHub with the name of current directory)</SPAN>
+$ git push origin master
+</PRE></SECTION><SECTION 
+id="work">
+<H2>Using GitHub for work</H2>
+<P>Save time at work by opening <EM>pull requests for code reviews</EM> and
+ pushing to <EM>multiple remotes at once</EM>. Even <EM>GitHub Enterprise</EM>
+ is supported. </P>
+<PRE><SPAN class="comment"># whitelist your GitHub Enterprise hostname</SPAN>
+$ git config --global --add hub.host <STRONG>my.example.org</STRONG>
+
+<SPAN class="comment"># open a pull request using a message generated from script, then put its URL to the clipboard</SPAN>
+$ git push origin feature
+$ git <STRONG>pull-request -F prepared-message.md | pbcopy</STRONG>
+<SPAN class="result">→ (URL ready for pasting in a chat room)</SPAN>
+
+<SPAN class="comment"># push to multiple remotes</SPAN>
+$ git <STRONG>push production,staging</STRONG>
+</PRE></SECTION>
+<P class="footer">Found a bug, have an idea? Contribute to <A href="https://github.com/github/hub">this 
+project on github</A>. </P>
+<SCRIPT>
+  var _gauges = _gauges || [];
+  if (/github\.com/.test(location.hostname)) (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '51dd714ef5a1f517070000ce');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</SCRIPT>
+ </BODY></HTML>
